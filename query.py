@@ -74,11 +74,9 @@ def add_pinyin():
   hanzi = [x['fields']['Hanzi']['value'] for x in info]
   
   pin = transliterate(hanzi)
-  print(notes, pin)
   
   for i in range(len(notes)):
     result = update_pinyin(notes[i], pin[i])
-    print(result)
     
     
 def deck_names_and_ids():
@@ -147,6 +145,7 @@ def create_pinyin_deck():
                 "Pinyin2": hanzi_to_card[h[0]].pinyin2[0]
       },
     } for p, h in pin_to_hanzi.items()]
+  notes = sorted(notes, key=lambda x : x["fields"]["Pinyin2"])
   
   result = add_pinyin_notes(notes)
   print(result)
